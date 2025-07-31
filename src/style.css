@@ -1,4 +1,4 @@
-/* Tesla Supercharger Tracker Styles */
+/* Tesla Supercharger Tracker Styles with Authentication */
 :root {
   --tesla-red: #e31837;
   --tesla-black: #171a20;
@@ -23,23 +23,217 @@ body {
   min-height: 100vh;
 }
 
-header {
-  background: linear-gradient(135deg, var(--tesla-black) 0%, var(--tesla-gray) 100%);
-  color: var(--tesla-white);
+/* Authentication Modal Styles */
+.auth-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(23, 26, 32, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.auth-modal-content {
+  background: var(--tesla-white);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.auth-header {
   text-align: center;
-  padding: 2rem 1rem;
   margin-bottom: 2rem;
 }
 
-header h1 {
-  font-size: 2.5rem;
+.auth-header h2 {
+  color: var(--tesla-black);
+  font-size: 1.8rem;
   margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  color: var(--tesla-gray);
+  font-size: 0.9rem;
+}
+
+.auth-tabs {
+  display: flex;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--tesla-light-gray);
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--tesla-gray);
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.auth-tab.active {
+  color: var(--tesla-red);
+  border-bottom-color: var(--tesla-red);
+}
+
+.auth-form {
+  display: none;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.auth-btn:first-of-type {
+  background: var(--tesla-red);
+  color: var(--tesla-white);
+}
+
+.auth-btn:first-of-type:hover {
+  background: #c41230;
+}
+
+.google-btn {
+  background: var(--tesla-white) !important;
+  color: var(--tesla-black) !important;
+  border: 2px solid #dadce0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.google-btn:hover {
+  border-color: var(--tesla-gray) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth-divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+  color: var(--tesla-gray);
+}
+
+.auth-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e0e0e0;
+  z-index: 1;
+}
+
+.auth-divider span {
+  background: var(--tesla-white);
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header Styles with User Info */
+header {
+  background: linear-gradient(135deg, var(--tesla-black) 0%, var(--tesla-gray) 100%);
+  color: var(--tesla-white);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-left h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
   font-weight: 300;
 }
 
-header p {
-  font-size: 1.1rem;
+.header-left p {
+  font-size: 1rem;
   opacity: 0.9;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.vehicle-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vehicle-selector select {
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--tesla-white);
+  min-width: 150px;
+}
+
+.vehicle-selector select option {
+  background: var(--tesla-black);
+  color: var(--tesla-white);
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--tesla-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 main {
@@ -192,6 +386,96 @@ button[type="submit"]:hover {
   color: var(--tesla-gray);
   margin: 0;
   text-align: center;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(23, 26, 32, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--tesla-white);
+  border-radius: var(--border-radius);
+  padding: 0;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.modal-header h3 {
+  color: var(--tesla-black);
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--tesla-gray);
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--tesla-light-gray);
+  color: var(--tesla-black);
+}
+
+#vehicle-form {
+  padding: 0 1.5rem 1.5rem;
+}
+
+/* Message Styles */
+.message {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+}
+
+.message-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.message-info {
+  background: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
 }
 
 /* Autocomplete Styles */

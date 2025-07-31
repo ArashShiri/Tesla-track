@@ -1,8 +1,20 @@
 # 🚗⚡ Tesla Supercharger Tracker
 
-A comprehensive web application to track all the Tesla Superchargers you've visited. Features real-time autocomplete from the global supercharger database, interactive maps, and route visualization.
+A comprehensive web application to track Tesla Supercharger visits across multiple vehicles with user authentication, real-time data sync, and advanced analytics.
 
 ## ✨ Features
+
+### 👤 **Multi-User Authentication**
+- **Google Sign-In**: One-click authentication with Google account
+- **Email/Password**: Traditional signup and login with secure password handling
+- **User Profiles**: Automatic profile creation with display names and photos
+- **Secure Sessions**: Protected user data with Firebase authentication
+
+### 🚗 **Vehicle Management**
+- **Multiple Vehicles**: Add and manage multiple Tesla vehicles per user
+- **Vehicle Profiles**: Track name, model, year, color, and VIN details
+- **Vehicle Selection**: Filter visits and statistics by specific vehicle
+- **Vehicle Analytics**: Individual charging statistics per vehicle
 
 ### 🔍 **Smart Autocomplete**
 - **Real-time search** from global Tesla Supercharger database (supercharge.info)
@@ -15,22 +27,43 @@ A comprehensive web application to track all the Tesla Superchargers you've visi
 - **Popup details** with visit information and supercharger specs
 - **Auto-zoom** to fit all your visits
 
+### ⚡ **Energy Tracking**
+- **kWh tracking** - Record energy added during each charging session
+- **Total energy consumption** statistics per vehicle and overall
+- **Session-specific details** with charging amounts and efficiency metrics
+
+### ✏️ **Visit Management**
+- **Edit functionality** - Modify any visit details after creation
+- **Delete visits** with confirmation
+- **Rich visit records** with full supercharger metadata
+- **Notes support** for each visit with detailed descriptions
+
+### 📤📥 **Data Import/Export**
+- **Export data** as JSON backup files with timestamps
+- **Import functionality** with merge or replace options
+- **Data validation** and error handling
+- **Cloud backup** with Firebase integration
+- **Cross-device sync** for seamless access
+
 ### 📊 **Enhanced Statistics**
-- **Total visits** count
+- **Per-vehicle analytics** with detailed breakdown
+- **Total visits** count across all vehicles
 - **Unique locations** visited
 - **Countries visited** counter
+- **Total energy consumption** in kWh with efficiency metrics
 - **Detailed supercharger info** (stalls, power, location)
 
-### 💾 **Data Management**
-- **Local storage** - all data stays private in your browser
-- **Rich visit records** with full supercharger metadata
-- **Notes support** for each visit
-- **Easy deletion** with confirmation
+### � **Cloud Data Management**
+- **Firebase integration** - Secure cloud storage and real-time sync
+- **User isolation** - Each user's data is completely private
+- **Real-time updates** - Changes appear instantly across devices
+- **Offline support** - Works offline with automatic sync when connected
 
 ### 📱 **Responsive Design**
 - **Tesla-themed UI** with official brand colors
-- **Mobile-friendly** interface
+- **Mobile-friendly** interface optimized for all devices
 - **Clean, modern design** inspired by Tesla's aesthetic
+- **Intuitive navigation** with streamlined user experience
 
 ## 🚀 Getting Started
 
@@ -38,15 +71,26 @@ A comprehensive web application to track all the Tesla Superchargers you've visi
 
 - Node.js (v18 or higher)
 - npm
-- Modern web browser with localStorage support
+- Modern web browser
+- Firebase account (free)
 
 ### Installation
 
-1. Clone or download this repository
-2. Install dependencies:
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd tesla-track
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
+
+3. **Set up Firebase** (Required for authentication and data storage)
+   - Follow the detailed instructions in [FIREBASE_SETUP.md](FIREBASE_SETUP.md)
+   - Create a Firebase project with Authentication and Firestore
+   - Update `src/firebase-config.js` with your project configuration
 
 ### Running the Application
 
@@ -67,6 +111,14 @@ Creates an optimized production build in the `dist` folder.
 npm run preview
 ```
 
+### First Time Setup
+
+1. **Start the development server** (`npm run dev`)
+2. **Open** http://localhost:5173 in your browser
+3. **Sign up** with Google or email/password
+4. **Add your first vehicle** using the vehicle management interface
+5. **Start tracking** your supercharger visits!
+
 ## 📖 Usage Guide
 
 ### Adding a New Visit
@@ -80,24 +132,47 @@ npm run preview
    - Use the date picker (defaults to today)
    - Can add visits from the past
 
-3. **Add Notes** (optional):
+3. **Add Energy (Optional)**:
+   - Enter kWh added during your charging session
+   - Helps track total energy consumption
+
+4. **Add Notes** (optional):
    - Personal experiences, charging speed, facilities, etc.
 
-4. **Submit**:
+5. **Submit**:
    - Click "Add Visit" to save
    - Visit appears immediately on map and in history
+
+### Editing Visits
+
+1. **Find the Visit**: Locate the visit card you want to edit
+2. **Click Edit Button**: Click the ✏️ (pencil) icon
+3. **Modify Details**: Update any information in the form
+4. **Save or Cancel**: Click "Update Visit" or "Cancel Edit"
+
+### Managing Your Data
+
+#### Export Data
+- Click "📤 Export Data" to download a JSON backup
+- Files include timestamp and all visit details
+- Use for backups or transferring between devices
+
+#### Import Data
+- Click "📥 Import Data" to restore from a backup file
+- Choose to **merge** with existing data or **replace** all data
+- Merge prevents duplicates, replace starts fresh
 
 ### Viewing Your Data
 
 - **Map View**: Interactive map shows all visits with route lines
-- **Visit Cards**: Detailed cards with all information
-- **Statistics**: Overview of your charging journey
+- **Visit Cards**: Detailed cards with all information including kWh
+- **Statistics**: Overview including total energy consumption
 - **Popup Details**: Click map markers for visit details
 
 ### Managing Visits
 
-- **Delete**: Click × button on any visit card
-- **Edit**: Currently requires deletion and re-adding
+- **Edit**: Click ✏️ button on any visit card to modify details
+- **Delete**: Click × button on any visit card (with confirmation)
 - **Export**: Data stored in localStorage (future: export features)
 
 ## 🔧 Technical Details
