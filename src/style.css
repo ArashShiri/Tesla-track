@@ -1,0 +1,464 @@
+/* Tesla Supercharger Tracker Styles */
+:root {
+  --tesla-red: #e31837;
+  --tesla-black: #171a20;
+  --tesla-white: #ffffff;
+  --tesla-gray: #5c5e62;
+  --tesla-light-gray: #f4f4f4;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--tesla-black);
+  background-color: var(--tesla-white);
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, var(--tesla-black) 0%, var(--tesla-gray) 100%);
+  color: var(--tesla-white);
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+}
+
+header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+section {
+  background: var(--tesla-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+h2, h3 {
+  color: var(--tesla-black);
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--tesla-gray);
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--tesla-red);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+button[type="submit"] {
+  background: var(--tesla-red);
+  color: var(--tesla-white);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+button[type="submit"]:hover {
+  background: #c41230;
+}
+
+/* Form Action Buttons */
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.form-actions button {
+  flex: 1;
+  min-width: 120px;
+}
+
+.cancel-btn {
+  background: var(--tesla-gray) !important;
+  color: var(--tesla-white) !important;
+}
+
+.cancel-btn:hover {
+  background: #4a4c50 !important;
+}
+
+/* Import/Export Section */
+.import-export {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--tesla-light-gray);
+  border-radius: var(--border-radius);
+  border: 1px solid #e0e0e0;
+}
+
+.import-export h3 {
+  margin-bottom: 1rem;
+  color: var(--tesla-black);
+  font-size: 1.1rem;
+}
+
+.data-controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.secondary-btn {
+  background: var(--tesla-white);
+  color: var(--tesla-black);
+  border: 2px solid var(--tesla-gray);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+}
+
+.secondary-btn:hover {
+  background: var(--tesla-gray);
+  color: var(--tesla-white);
+}
+
+.import-label {
+  position: relative;
+  overflow: hidden;
+}
+
+.import-note {
+  font-size: 0.85rem;
+  color: var(--tesla-gray);
+  margin: 0;
+  text-align: center;
+}
+
+/* Autocomplete Styles */
+.autocomplete-container {
+  position: relative;
+  width: 100%;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--tesla-white);
+  border: 2px solid #e0e0e0;
+  border-top: none;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  box-shadow: var(--shadow);
+}
+
+.autocomplete-item {
+  padding: 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.autocomplete-item:hover {
+  background-color: var(--tesla-light-gray);
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.sc-name {
+  font-weight: 500;
+  color: var(--tesla-black);
+  margin-bottom: 0.25rem;
+}
+
+.sc-location {
+  font-size: 0.9rem;
+  color: var(--tesla-gray);
+  margin-bottom: 0.25rem;
+}
+
+.sc-details {
+  font-size: 0.8rem;
+  color: var(--tesla-gray);
+  opacity: 0.8;
+}
+
+/* Map Styles */
+.map-container {
+  margin-bottom: 1.5rem;
+}
+
+.map {
+  height: 300px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  border: 2px solid #e0e0e0;
+}
+
+.map-popup {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.map-popup strong {
+  color: var(--tesla-black);
+}
+
+/* Stats */
+.stats {
+  background: var(--tesla-light-gray);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500;
+  color: var(--tesla-gray);
+}
+
+/* Visits Grid */
+.visits-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.visit-card {
+  background: var(--tesla-white);
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.visit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.visit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.visit-header h3 {
+  color: var(--tesla-black);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  flex: 1;
+}
+
+.visit-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  color: var(--tesla-gray);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: var(--tesla-black);
+  color: var(--tesla-white);
+}
+
+.delete-btn:hover {
+  background: var(--tesla-red);
+  color: var(--tesla-white);
+}
+
+.visit-info p {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.sc-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.sc-detail {
+  background: var(--tesla-light-gray);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: var(--tesla-gray);
+}
+
+.added-date {
+  color: var(--tesla-gray);
+  font-size: 0.8rem !important;
+  margin-top: 0.5rem;
+}
+
+.no-visits {
+  text-align: center;
+  color: var(--tesla-gray);
+  font-style: italic;
+  padding: 2rem;
+}
+
+/* Messages */
+.message {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem auto;
+  max-width: 1200px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.message-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message-info {
+  background: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.message-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  section {
+    padding: 1rem;
+  }
+  
+  .map {
+    height: 250px;
+  }
+  
+  .visit-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .delete-btn {
+    align-self: flex-end;
+    margin-top: -1rem;
+  }
+  
+  .sc-info {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 1.5rem 1rem;
+  }
+  
+  main {
+    padding: 0 0.5rem;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .map {
+    height: 200px;
+  }
+  
+  .autocomplete-list {
+    max-height: 200px;
+  }
+}

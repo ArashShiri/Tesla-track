@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tesla Supercharger Tracker</title>
+    <!-- Leaflet CSS for mapping -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>🚗⚡ Tesla Supercharger Tracker</h1>
+        <p>Track all the Tesla Superchargers you've visited with interactive maps and autocomplete</p>
+      </header>
+      
+      <main>
+        <section class="add-visit">
+          <h2 id="form-title">Add New Visit</h2>
+          <form id="visit-form">
+            <div class="form-group">
+              <label for="location">Supercharger Location *</label>
+              <div class="autocomplete-container">
+                <input type="text" id="location" name="location" required 
+                       placeholder="Start typing to search superchargers...">
+                <div id="autocomplete-list" class="autocomplete-list"></div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="visit-date">Date Visited *</label>
+              <input type="date" id="visit-date" name="visitDate" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="kwh-added">Energy Added (kWh)</label>
+              <input type="number" id="kwh-added" name="kwhAdded" step="0.1" min="0" max="200" 
+                     placeholder="e.g., 45.2">
+            </div>
+            
+            <div class="form-group">
+              <label for="notes">Notes (optional)</label>
+              <textarea id="notes" name="notes" placeholder="Any additional notes about your visit..."></textarea>
+            </div>
+            
+            <div class="form-actions">
+              <button type="submit" id="submit-btn">Add Visit</button>
+              <button type="button" id="cancel-edit-btn" class="cancel-btn" style="display: none;">Cancel Edit</button>
+            </div>
+          </form>
+          
+          <!-- Import/Export Section -->
+          <div class="import-export">
+            <h3>📁 Data Management</h3>
+            <div class="data-controls">
+              <button type="button" id="export-btn" class="secondary-btn">
+                📤 Export Data
+              </button>
+              <label for="import-file" class="secondary-btn import-label">
+                📥 Import Data
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+              </label>
+            </div>
+            <p class="import-note">Export your data as JSON or import from a previous backup</p>
+          </div>
+        </section>
+        
+        <section class="visits-history">
+          <h2>Your Supercharger Visits</h2>
+          <div class="stats">
+            <span id="total-visits">Total visits: 0</span>
+          </div>
+          
+          <!-- Map Container -->
+          <div class="map-container">
+            <h3>🗺️ Visit Map</h3>
+            <div id="map" class="map"></div>
+          </div>
+          
+          <div id="visits-list" class="visits-container">
+            <p class="no-visits">No visits recorded yet. Add your first visit above!</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- Leaflet JS for mapping -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
